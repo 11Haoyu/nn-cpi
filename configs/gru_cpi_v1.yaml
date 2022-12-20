@@ -1,0 +1,47 @@
+model:
+  class_path: deep_cpi.models.DeepCPIGRU
+  init_args:
+    in_channels: 7
+    hidden_size: 16
+    num_layers: 4
+    dropout: 0.1
+    add_noise: 0.1
+    bidirectional: False
+    learning_rate: 0.001
+
+data:
+  class_path: deep_cpi.data.DeepCPI
+  init_args:
+    dataset_path: data/CPIv1_scaled.csv
+    seq_length: 12
+    train_split_ratio: 0.8
+    num_workers: 0
+
+trainer:
+  max_epochs: 400
+  # accelerator: "gpu"
+  devices: 1
+
+  # logger:
+    # class_path: deep_cpi.utils.logger.WandbLogger
+    # init_args:
+    #   project: DeepCPI
+    #   entity: vivym
+    #   name: Test
+    #   notes: "Test"
+    #   tags: ["test"]
+    #   save_code: True
+  callbacks:
+    - class_path: RichProgressBar
+      init_args:
+        leave: True
+    - class_path: ModelCheckpoint
+      init_args:
+        filename: "epoch_{epoch:03d}_mse_{val/loss_mse:.04f}"
+        auto_insert_metric_name: False
+        save_top_k: -1
+        every_n_epochs: 10
+
+  default_root_dir: wandb
+
+seed_everything: 23333

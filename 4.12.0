@@ -1,0 +1,8 @@
+Collecting jsonargparse[signatures]
+  Downloading jsonargparse-4.15.2-py3-none-any.whl (159 kB)
+     ------------------------------------ 160.0/160.0 kB 737.6 kB/s eta 0:00:00
+Requirement already satisfied: PyYAML>=3.13 in c:\programdata\anaconda3\envs\new\lib\site-packages (from jsonargparse[signatures]) (6.0)
+Collecting docstring-parser>=0.15
+  Downloading docstring_parser-0.15-py3-none-any.whl (36 kB)
+Installing collected packages: jsonargparse, docstring-parser
+Successfully installed docstring-parser-0.15 jsonargparse-4.15.2
